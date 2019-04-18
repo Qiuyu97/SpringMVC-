@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<!-- 
+		网站运行的基本配置
+		定义Spring进行请求的服务拦截
+		通过内置的一个Servlet文件进行自动拦截
+		拦截的位置位于第二个配置，/ 从跟路径开始
+		凡是请求当前网址的，全部通过 DispatcherServlet进行拦截
+		拦截后，将自动分析，进行对应的控制器 或 方法 或 路径的调用
+	 -->
+    <servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
