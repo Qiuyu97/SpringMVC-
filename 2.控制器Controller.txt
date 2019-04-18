@@ -1,0 +1,91 @@
+一：SpringMVC控制器Controller基础
+
+1.1：SpringMVC基本请求URL：                   [ 协议://ip地址:端口号/项目名称/控制器/方法 ]
+
+1.2：控制器注解   
+
+    @Controller                                             [ org.springframework.stereotype.Controller ]
+    @RequestMapping("/控制器")                [ org.springframework.web.bind.annotation.RequestMapping ]
+
+1.3：方法注解
+
+    @RequestMapping("/方法")                   [ org.springframework.web.bind.annotation.RequestMapping ]
+
+1.4：控制器返回值与视图View
+
+    return "控制器/方法";
+
+二：@RequestMapping详解
+
+2.1：name 指定映射名称（无特殊含义，类似注释，提高可读性）  （"单值"）
+
+2.2：value 指定映射的URL （"单值"，{数组}）
+        控制器与方法的缺省（默认）处理
+
+2.3：method 指定请求的方式  （"单值"，{数组}）
+        enum RequestMethod
+
+2.4：headers 指定请求的头信息 （"单值"，{数组}）
+        Host                               localhost:8080  
+        Accept                           text/html,application/xhtml+xml,application/xml;q=0.9  
+        Accept-Language         fr,en-gb;q=0.7,en;q=0.3  
+        Accept-Encoding          gzip,deflate  
+        Accept-Charset             ISO-8859-1,utf-8;q=0.7,*;q=0.7  
+        Keep-Alive                    300 
+
+2.5：params 指定请求的参数 （"单值"，{数组}）
+
+	@RequestMapping(
+			name="商品列表页面",
+			value= { "/list" , "/liebiao" },
+			method={ RequestMethod.GET,RequestMethod.POST },
+			headers={ "host=172.31.67.23:8080" },
+			params={"id","uname=admin","!delete"},
+			consumes={"application/*"},
+			produces={"application/json"}
+			)
+
+
+
+
+
+
+	@RequestMapping(
+			value="/show",
+			headers={"Accept=application/json;charset=UTF-8"},
+			produces={"application/json;charset=UTF-8"})
+	@ResponseBody
+	public Product show(){
+		
+		Product product = new Product();
+		product.setProductId(10001);
+		product.setProductName("书晴");
+		product.setProductPrice(199.99);
+		
+		return product;
+	}
+	
+
+
+
+
+
+
+	@RequestMapping("/ajax")
+	public String ajax(){
+		
+		return "product/ajax";
+	}
+
+
+
+
+
+2.6：consumes 约束请求的内容类型（Content-Type） （"单值"，{数组}）
+
+2.7：produces 指定请求的返回类型 （"单值"，{数组}）
+
+
+
+
+
